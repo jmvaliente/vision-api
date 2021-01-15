@@ -12,5 +12,10 @@ const worker = createWorker({
 const storage = multer.diskStorage({
     destination: (req, res, cb) => {
         cb(null, "./upload")
+    },
+    filename: (req, res, cb) => {
+        cb(null, req.file)
     }
 })
+
+const upload = multer({ storage: storage }).single('avatar')
